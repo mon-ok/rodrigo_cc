@@ -6,7 +6,8 @@
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: 'Montserrat', sans-serif;
   line-height: 1.6;
   color: #fff;
   background: linear-gradient(135deg, #ff5f6d, #ff9966);
@@ -24,11 +25,6 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-}
-
-/* General font for body */
-body {
-  font-family: 'Montserrat', sans-serif;
 }
 
 /* Logo styling */
@@ -65,6 +61,26 @@ body {
 .nav-links a:hover {
   color: #4aa8ff;
 }
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(20, 20, 20, 0.9);
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 0.3s ease-in-out; /* smooth hide/show */
+  z-index: 1000;
+}
+
+header.hide {
+  transform: translateY(-100%); /* slide header up */
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -103,7 +119,14 @@ body {
 .hero-text h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  color: #ffffff;
+  text-shadow: 
+    0 0 5px #4aa8ff,
+    0 0 10px #4aa8ff,
+    0 0 20px #1e90ff,
+    0 0 40px #1e90ff;
 }
+
 
 .hero-text p {
   margin-bottom: 1.5rem;
