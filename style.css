@@ -10,7 +10,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   line-height: 1.6;
   color: #fff;
-  background: linear-gradient(135deg, #ff5f6d, #ff9966);
+  /* background: linear-gradient(135deg, #ff5f6d, #ff9966); */
   overflow-x: hidden;
 }
 
@@ -20,8 +20,9 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 5%;
-  background: #0d1b2a; /* deep navy */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: #000000; /* pure black */
+  border-bottom: 3px solid #4aa8ff; /* bright blue outline */
+  box-shadow: 0 2px 20px rgba(74, 168, 255, 0.5); /* blue glow under header */
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -44,7 +45,6 @@ body {
   transform: scale(1.05);
   opacity: 0.9;
 }
-
 
 .nav-links {
   display: flex;
@@ -95,10 +95,11 @@ header.hide {
   grid-template-columns: 1fr 1fr;
   align-items: center;
   min-height: 100vh;
-  padding: 8rem 5% 2rem;
+  padding: 2rem 5% 2rem;
 
   /* Background image setup */
-  background: url("assets/bg6_pattern.jpg") no-repeat center center/cover;
+  /* background: url("assets/bg7_pattern.jpg") no-repeat center center/cover; */
+  background-color: #0d1b2a; /* dark navy blue */
   position: relative;
 }
 
@@ -118,6 +119,7 @@ header.hide {
 
 .hero-text h1 {
   font-size: 2.5rem;
+  margin-left: 0.2rem;
   margin-bottom: 1rem;
   color: #ffffff;
   text-shadow: 
@@ -125,8 +127,29 @@ header.hide {
     0 0 10px #4aa8ff,
     0 0 20px #1e90ff,
     0 0 40px #1e90ff;
+  
+  animation: pulseGlow 4s ease-in-out infinite;
 }
 
+/* Pulse keyframes */
+@keyframes pulseGlow {
+  0%, 80%, 100% {
+    transform: scale(1);
+    text-shadow: 
+      0 0 5px #4aa8ff,
+      0 0 10px #4aa8ff,
+      0 0 20px #1e90ff,
+      0 0 40px #1e90ff;
+  }
+  40% {
+    transform: scale(1.05);
+    text-shadow: 
+      0 0 10px #4aa8ff,
+      0 0 20px #4aa8ff,
+      0 0 40px #1e90ff,
+      0 0 60px #1e90ff;
+  }
+}
 
 .hero-text p {
   margin-bottom: 1.5rem;
@@ -136,33 +159,59 @@ header.hide {
 .buttons {
   display: flex;
   gap: 1rem;
+  margin-top: 2rem;
 }
 
 .buttons a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.8rem;
+  font-size: 1.1rem;
+  font-weight: bold;
   text-decoration: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 4px;
-  transition: all 0.3s;
+  border-radius: 6px;
+  transition: transform 0.2s ease-in-out, background 0.3s, box-shadow 0.3s;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
 
-.buttons .primary {
-  background: #fff;
-  color: #ff5f6d;
-}
-
-.buttons .primary:hover {
-  background: #222;
+/* Primary (APE IN NOW) – light grayish blue button */
+.buttons a.primary {
+  background: linear-gradient(180deg, #6f8ca3, #4a6378); /* grayish blue gradient */
   color: #fff;
+  border: none;
 }
 
-.buttons .secondary {
-  border: 2px solid #fff;
-  color: #fff;
+/* Secondary (VIEW CHART) – dark grayish blue w/ light blue border */
+.buttons a.secondary {
+  background: #1b2733; /* deep bluish-gray */
+  color: #7da6c2;       /* muted blue text */
+  border: 2px solid #7da6c2;
 }
 
-.buttons .secondary:hover {
-  background: #fff;
-  color: #ff5f6d;
+/* Hover vibrate animation */
+@keyframes vibrate {
+  0% { transform: translate(0); }
+  10% { transform: translate(-3px, 2px); }
+  20% { transform: translate(-2px, -2px); }
+  30% { transform: translate(3px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  50% { transform: translate(-3px, 2px); }
+  60% { transform: translate(2px, 2px); }
+  70% { transform: translate(-2px, -2px); }
+  80% { transform: translate(3px, -2px); }
+  90% { transform: translate(-2px, 2px); }
+  100% { transform: translate(0); }
+}
+
+.buttons a:hover {
+  animation: vibrate 0.4s linear;
+  filter: brightness(1.2);
+  box-shadow: 
+    0 0 8px #7da6c2,
+    0 0 16px #7da6c2,
+    0 0 24px #7da6c2;
 }
 
 .hero-image {
@@ -287,6 +336,68 @@ header.hide {
   .timeline-item.right {
     left: 0;
   }
+}
+
+/* Intro Screen Styles */
+.intro-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+.intro-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Makes video cover entire screen */
+}
+
+.skip-button {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  background: rgba(74, 168, 255, 0.9);
+  color: white;
+  border: 2px solid #4aa8ff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(74, 168, 255, 0.4);
+}
+
+.skip-button:hover {
+  background: #4aa8ff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(74, 168, 255, 0.6);
+}
+
+/* Main Content */
+.main-content {
+  opacity: 0;
+  transition: opacity 0.8s ease-in;
+}
+
+/* Alternative: If you want the video centered with black bars */
+.intro-video.contained {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 /* Keyframes */

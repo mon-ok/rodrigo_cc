@@ -9,17 +9,26 @@
 </head>
 <body>
 
-  <header class="site-header">
-    <div class="logo">@StatiCKy</div>
-    <nav class="nav-links">
-      <a href="#story">My Story</a>
-      <a href="#roadmap">Project Objective</a>
-      <!-- <a href="#contact">Contact</a> -->
-    </nav>
-  </header>
+  <!-- Intro Screen with Video -->
+  <div id="intro-screen" class="intro-screen">
+    <video id="intro-video" class="intro-video" muted playsinline>
+      <source src="assets/anim-useEffect.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <button id="skip-intro" class="skip-button">Skip Intro →</button>
+  </div>
 
+  <!-- Main Content (your existing page) -->
+  <div id="main-content" class="main-content">
+    <header class="site-header">
+      <div class="logo">@StatiCKy</div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#roadmap">Project Objective</a>
+      </nav>
+    </header>
 
-  <section class="hero" id="story">
+  <section class="hero" id="about">
     <div class="hero-text">
       <!-- <small>My Story</small> -->
       <h1>I’m Rodrigo</h1>
@@ -31,8 +40,8 @@
         Beyond poker, I’m passionate about the $gib coin on Solana and about building a strong community around it.
       </p>
       <div class="buttons">
-        <a href="#" class="primary">Book Now</a>
-        <a href="#" class="secondary">Contact Us</a>
+        <a href="#" class="primary">APE IN NOW</a>
+        <a href="#" class="secondary">VIEW CHART</a>
       </div>
     </div>
 
