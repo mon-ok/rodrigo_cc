@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const introVideo = document.getElementById('intro-video');
   const mainContent = document.getElementById('main-content');
   const skipButton = document.getElementById('skip-intro');
-  const copyBtn = document.getElementById("copyBtn");
-  const contractBox = document.getElementById("contractAddress");
 
   // Hide main content initially
   mainContent.style.display = 'none';
@@ -24,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initialize scroll functionality after content is visible
         initScrollEffects();
         initCopyButton(); // 🔹 initialize copy after main content is visible
+        hamburgerMenu(); // 🔹 initialize hamburger menu
       }, 50);
     }, 500); // Wait for fade out
   }
@@ -123,14 +122,12 @@ function initCopyButton() {
     popup.className = "copy-popup";
     popup.textContent = message;
 
-    // place relative to button
     const rect = target.getBoundingClientRect();
     popup.style.left = `${rect.left + rect.width / 2}px`;
     popup.style.top = `${rect.top - 10}px`;
 
     document.body.appendChild(popup);
 
-    // animate + remove
     setTimeout(() => {
       popup.style.opacity = "0";
       popup.style.transform = "translateY(-20px)";
@@ -140,4 +137,28 @@ function initCopyButton() {
       popup.remove();
     }, 1500);
   }
+}
+
+// HAMBURGER MENU FUNCTIONALITY
+function hamburgerMenu() {
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("navLinks");
+
+  if (!hamburger || !navLinks) return;
+
+  hamburger.addEventListener("click", (e) => {
+    navLinks.classList.toggle("active");
+    e.stopPropagation(); // Prevent document click from firing
+  });
+
+  // Hide nav-links when clicking anywhere else
+  document.addEventListener("click", (e) => {
+    if (
+      navLinks.classList.contains("active") &&
+      !navLinks.contains(e.target) &&
+      e.target !== hamburger
+    ) {
+      navLinks.classList.remove("active");
+    }
+  });
 }
