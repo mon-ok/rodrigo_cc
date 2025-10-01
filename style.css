@@ -42,8 +42,8 @@ body {
 
 /* Logo styling */
 .logo {
-  font-family: 'Orbitron', sans-serif; /* more graphic/modern */
-  font-size: 1.8rem;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.2rem;
   font-weight: 600;
   background: linear-gradient(90deg, #4aa8ff, #82cfff);
   -webkit-background-clip: text;
@@ -51,6 +51,7 @@ body {
   letter-spacing: 2px;
   cursor: pointer;
   transition: transform 0.3s ease, opacity 0.3s ease;
+  text-transform: none;
 }
 
 .logo:hover {
@@ -458,7 +459,7 @@ header.hide {
 /* Responsive */
 @media (max-width: 768px) {
   .logo {
-    font-size: 1.4rem; /* smaller logo */
+    font-size: 0.8rem; /* smaller logo */
   }
   .timeline-item {
     width: 100%;
