@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const introVideo = document.getElementById('intro-video');
   const mainContent = document.getElementById('main-content');
   const skipButton = document.getElementById('skip-intro');
+  const copyBtn = document.getElementById("copyBtn");
+  const contractBox = document.getElementById("contractAddress");
 
   // Hide main content initially
   mainContent.style.display = 'none';
@@ -21,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         mainContent.style.opacity = '1';
         // Initialize scroll functionality after content is visible
         initScrollEffects();
+        initCopyButton(); // 🔹 initialize copy after main content is visible
       }, 50);
     }, 500); // Wait for fade out
   }
@@ -92,4 +95,49 @@ function initScrollEffects() {
 
     lastScrollY = currentScrollY;
   });
+}
+
+// COPY BUTTON FUNCTIONALITY
+function initCopyButton() {
+  const copyBtn = document.getElementById("copyBtn");
+  const contractBox = document.getElementById("contractAddress");
+
+  if (!copyBtn || !contractBox) return;
+
+  copyBtn.addEventListener("click", () => {
+    const textToCopy = contractBox.textContent.trim();
+
+    navigator.clipboard.writeText(textToCopy)
+      .then(() => {
+        showCopyPopup(copyBtn, "✅ Copied!");
+      })
+      .catch(err => {
+        console.error("Failed to copy:", err);
+        showCopyPopup(copyBtn, "❌ Failed!");
+      });
+  });
+
+  // helper function for floating popup
+  function showCopyPopup(target, message) {
+    const popup = document.createElement("div");
+    popup.className = "copy-popup";
+    popup.textContent = message;
+
+    // place relative to button
+    const rect = target.getBoundingClientRect();
+    popup.style.left = `${rect.left + rect.width / 2}px`;
+    popup.style.top = `${rect.top - 10}px`;
+
+    document.body.appendChild(popup);
+
+    // animate + remove
+    setTimeout(() => {
+      popup.style.opacity = "0";
+      popup.style.transform = "translateY(-20px)";
+    }, 50);
+
+    setTimeout(() => {
+      popup.remove();
+    }, 1500);
+  }
 }
